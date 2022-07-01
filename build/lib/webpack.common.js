@@ -5,7 +5,7 @@ const { rootPath } = require('../define.js')
 module.exports = {
     entry: path.resolve(rootPath, './src/index.ts'),
     output: {
-        path: path.resolve(rootPath, './static/components'),
+        path: path.resolve(rootPath, './static/dwc'),
         filename: 'js/library.js',
     },
     resolve: {

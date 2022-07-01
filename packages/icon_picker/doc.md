@@ -1,13 +1,13 @@
 # icon_pick
 > 用于选择 ICON
 
-<icon-picker name="icon" value="bi-123"></icon-picker>
+<icon-picker name="icon" value="bi bi-123"></icon-picker>
 
 ## 使用示例
 
 ```html
 <!-- html -->
-<icon-picker name="icon" value="bi-123"></icon-picker>
+<icon-picker name="icon" value="bi bi-123"></icon-picker>
 ```
 
 ```python

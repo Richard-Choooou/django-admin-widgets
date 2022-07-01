@@ -40,7 +40,7 @@ function genPythonFile() {
 
 function htmlWidgetTemplate() {
     return gulp.src('../packages/**/*.html')
-    .pipe(gulp.dest('../templates/components/'));
+    .pipe(gulp.dest('../templates/dwc/'));
 }
 
 function defaultTask() {

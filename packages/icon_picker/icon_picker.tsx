@@ -1,4 +1,4 @@
-import { Component, Prop, h, State } from '@stencil/core'
+import { Component, Prop, h, State, Listen } from '@stencil/core'
 
 @Component({
     tag: 'icon-picker',
@@ -15,6 +15,24 @@ export class MyComponent {
     @Prop() name = ""
     @Prop() value = ""
 
+    @Listen('click', { target: 'document' })
+    listenClick(e) {
+        let isClickSelf = false
+
+        let target = e.target
+        while (target) {
+            if (target === this) {
+                isClickSelf = true
+                break
+            }
+            target = target.parentNode
+        }
+
+        if (!isClickSelf) {
+            this.isShow = false
+        }
+    }
+
     onclick() {
         this.isShow = !this.isShow
     }
@@ -26,7 +44,7 @@ export class MyComponent {
     }
 
     async getBootstrapIcon() {
-        const response = await fetch("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css")
+        const response = await fetch("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css?t=" + +new Date())
         const text = await response.text()
         let iconGroups = text.match(/\.bi(.+)::before/ig)
         iconGroups = iconGroups.map(val => val.match(/\.(.*)::before/)[1])
@@ -47,7 +65,7 @@ export class MyComponent {
         const renderList = this.searchResult.length > 0 ? this.searchResult : this.icons
         return <div class="icon-picker" onClick={() => this.onclick()}>
             <input name={this.name} value={this.chooseIcon} type="text" hidden />
-            <i class={`bi ${this.chooseIcon || 'bi-plus-square'} choose`}></i>
+            <i class={`${this.chooseIcon || 'bi-plus-square'} choose`}></i>
             <div class={`top-bar`} onClick={e => e.stopPropagation()} hidden={!this.isShow}>
                 <i class={"bi bi-search"}></i>
                 <input value={this.searchText} type="text" placeholder='输入内容进行搜索' class={`search`} onInput={(e: any) => this.search(e.target.value)} />
@@ -58,7 +76,7 @@ export class MyComponent {
                     
                     {
                         renderList.map(val => <div class="icon" title={val} onClick={() => {
-                            this.chooseIcon = val
+                            this.chooseIcon = `bi ${val}`
                             this.value = this.chooseIcon
                         }}>
                             <i class={`bi ${val}`}></i>
