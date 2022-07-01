@@ -1,7 +1,9 @@
-from django.apps import AppConfig
-import os
+from django.apps import AppConfig as BaseAppConfig
 
 
-class AppConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'components'
+class AppConfig(BaseAppConfig):
+    name = 'dwc'
+    # verbose_name = '培训考核'
+
+    def ready(self):
+        super(AppConfig, self).ready()
