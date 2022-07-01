@@ -1,0 +1,35 @@
+# 该文件是自动生成，请勿修改
+from django.shortcuts import render
+
+components = [
+    {
+        "name": "icon_picker",
+        "cname": "图标选择"
+    },
+    {
+        "name": "uploader",
+        "cname": "文件上传"
+    }
+]
+
+
+def index_view(request):
+    return render(request, 'preview/base.html', {
+        "components": components
+    })
+
+
+def icon_picker_view(request):
+    return render(request, 'preview/icon_picker/doc.html', {
+        "components": components,
+        "component": 'icon_picker'
+    })
+
+
+def uploader_view(request):
+    return render(request, 'preview/uploader/doc.html', {
+        "components": components,
+        "component": 'uploader'
+    })
+
+    
