@@ -4,11 +4,13 @@ from django.shortcuts import render
 components = [
     {
         "name": "icon_picker",
-        "cname": "图标选择"
+        "cname": "图标选择",
+        "className": "IconPicker"
     },
     {
         "name": "uploader",
-        "cname": "文件上传"
+        "cname": "文件上传",
+        "className": "Uploader"
     }
 ]
 

@@ -1,4 +1,5 @@
 {
     "name": "icon_picker",
-    "cname": "图标选择"
+    "cname": "图标选择",
+    "className": "IconPicker"
 }

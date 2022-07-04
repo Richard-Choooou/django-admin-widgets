@@ -11,6 +11,10 @@
 &lt;icon-picker name=&quot;icon&quot; value=&quot;bi bi-123&quot;&gt;&lt;/icon-picker&gt;
 </code></pre>
 <pre><code class="language-python"># python
+from dwc.widgets import IconPicker
+
+class AdminMenuForm(forms.ModelForm):
+    icon = forms.CharField(label=&quot;图标&quot;, strip=True, widget=IconPicker)
 </code></pre>
 <h2 id="options">options</h2>
 <table>

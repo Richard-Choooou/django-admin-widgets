@@ -1,4 +1,5 @@
 {
     "name": "uploader",
-    "cname": "文件上传"
+    "cname": "文件上传",
+    "className": "Uploader"
 }

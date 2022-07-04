@@ -12,6 +12,10 @@
 
 ```python
 # python
+from dwc.widgets import IconPicker
+
+class AdminMenuForm(forms.ModelForm):
+    icon = forms.CharField(label="图标", strip=True, widget=IconPicker)
 
 ```
 

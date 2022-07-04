@@ -34,3 +34,14 @@ urlpatterns = [
 ]
 
 `
+
+exports.widgetPackage = `{{#each components}}
+from {{name}} import {{className}}
+{{/each}}
+
+__all__ = [
+    {{#each components}}
+    '{{className}}',
+    {{/each}}
+]
+`
