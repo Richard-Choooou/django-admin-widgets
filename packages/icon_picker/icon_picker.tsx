@@ -62,7 +62,7 @@ export class MyComponent {
     }
 
     render() {
-        const renderList = this.searchResult.length > 0 ? this.searchResult : this.icons
+        const renderList = this.searchText.length > 0 ? this.searchResult : this.icons
         return <div class="icon-picker" onClick={() => this.onclick()}>
             <input name={this.name} value={this.chooseIcon} type="text" hidden />
             <i class={`${this.chooseIcon || 'bi-plus-square'} choose`}></i>

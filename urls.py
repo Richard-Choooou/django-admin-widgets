@@ -3,7 +3,6 @@ from django.urls import path
 import dwc.views as views
 
 app_name = 'dwc'
-
 urlpatterns = [
     path('', views.index_view, name="index"),
     path('icon_picker', views.icon_picker_view, name="icon_picker"),
