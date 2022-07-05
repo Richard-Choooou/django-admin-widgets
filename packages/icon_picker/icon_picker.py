@@ -6,7 +6,7 @@ class IconPicker(forms.TextInput):
 
     class Media:
         css = {
-            'all': ({{{css}}},),
+            'all': ('''css''',),
         }
-        js = ({{{js}}},)
+        js = ('''js''',)
         
