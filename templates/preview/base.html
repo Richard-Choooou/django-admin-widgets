@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <script src="{% static 'dwc/js/library.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'dwc/css/dwc.min.css' %}">
+    <script src="{% static 'dwc/js/dwc.min.js' %}"></script>
 <script defer src="/static/preview/js/template.js"></script></head>
 <body>
     <div class="main">
         <div class="nav">
             {% block sidebar %}
+            <h2>组件</h2>
             <ul>
                 {% for comp in components %}
-                    <li {% if comp.name == component %}class="active"{% endif %}><a href="/components/{{comp.name}}">{{ comp.name }} {{comp.cname}}</a></li>
+                    <li {% if comp.name == component %}class="active"{% endif %}><a href="/dwc/{{comp.name}}">{{ comp.className }} {{comp.cname}}</a></li>
                 {% endfor %}
             </ul>
             {% endblock %}

@@ -5,13 +5,13 @@
 
 ## 使用示例
 
+### 在 html 中使用
 ```html
-<!-- html -->
 <icon-picker name="icon" value="bi bi-123"></icon-picker>
 ```
 
+### 在 python 中使用
 ```python
-# python
 from dwc.widgets import IconPicker
 
 class AdminMenuForm(forms.ModelForm):
@@ -20,7 +20,7 @@ class AdminMenuForm(forms.ModelForm):
 ```
 
 ## options
-|属性|默认值|说明|
-|  ----  | ----  | ----  |
-|  name  | null  | form 表单元素 name 属性 |
-|  value  | null  | form 表单元素 value 属性  |
+|属性|类型|默认值|说明|
+|  ----  |  ---- | ----  | ----  |
+|  name  |string| null  | form 表单元素 name 属性 |
+|  value  |string| null  | form 表单元素 value 属性  |

@@ -1,5 +1,5 @@
 import { Component, Prop, h, State, Listen } from '@stencil/core'
-
+import "bootstrap-icons/font/bootstrap-icons.css"
 @Component({
     tag: 'icon-picker',
     styleUrl: "./icon_picker.scss",

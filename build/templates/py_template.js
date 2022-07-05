@@ -36,7 +36,7 @@ urlpatterns = [
 `
 
 exports.widgetPackage = `{{#each components}}
-from {{name}} import {{className}}
+from .{{name}} import {{className}}
 {{/each}}
 
 __all__ = [

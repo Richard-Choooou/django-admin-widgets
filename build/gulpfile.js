@@ -50,6 +50,10 @@ function genPythonFile() {
 		components: components
 	})
 
+    if (!fs.existsSync(path.resolve(rootPath, "./widgets"))) {
+        fs.mkdirSync(path.resolve(rootPath, "./widgets"))
+    }
+
 	fs.writeFileSync(path.resolve(path.resolve(), "../widgets/__init__.py"), initfile)
 }
 
@@ -69,24 +73,29 @@ function htmlWidgetTemplate() {
  * 处理python文件
  * @returns 
  */
-function processPyFile() {
-    return gulp.src('../packages/**/*.py')
-    .pipe(rename(file => {
-        file.dirname = path.dirname(file.dirname);
-    }))
-    .pipe(gulp.dest('../widget/'));
-}
+// function processPyFile(cb) {
+//     gulp.src('../packages/**/*.py')
+//     .pipe(rename(file => {
+//         file.dirname = path.dirname(file.dirname);
+//     }))
+//     .pipe(gulp.dest('../widgets/')).on('end', cb);
+// }
 
-function defaultTask() {
+function build(cb) {
     markdown()
     htmlWidgetTemplate()
-    processPyFile()
     genPythonFile()
-    gulp.watch('../packages/**/*.md', markdown);
-    gulp.watch('../packages/**/*.html', htmlWidgetTemplate);
-    gulp.watch('../packages/**/*.py', processPyFile);
+    cb()
+    // gulp.watch('../packages/**/*.py', processPyFile);
 }
 
-module.exports.default = defaultTask
+function watch() {
+    gulp.watch('../packages/**/*.md', markdown);
+    gulp.watch('../packages/**/*.html', htmlWidgetTemplate);
+}
+
+module.exports.dev = gulp.parallel(build, watch)
+
+module.exports.build = build
 
 // exports.default = defaultTask
