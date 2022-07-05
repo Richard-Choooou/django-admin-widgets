@@ -8,5 +8,5 @@ class IconPicker(forms.TextInput):
         css = {
             'all': ('./dwc-components/css/dwc.min.ce60548d.css',),
         }
-        js = ('./dwc-components/js/dwc.chunks.min.ce60548d.js','./dwc-components/js/icon_picker.ce60548d.js',)
+        js = ('./dwc-components/js/dwc.chunks.min.ce60548d.js', './dwc-components/js/icon_picker.ce60548d.js',)
         
