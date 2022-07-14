@@ -44,7 +44,7 @@ export class MyComponent {
     }
 
     async getBootstrapIcon() {
-        const response = await fetch("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css?t=" + +new Date())
+        const response = await fetch("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css")
         const text = await response.text()
         let iconGroups = text.match(/\.bi(.+)::before/ig)
         iconGroups = iconGroups.map(val => val.match(/\.(.*)::before/)[1])

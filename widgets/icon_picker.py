@@ -6,7 +6,7 @@ class IconPicker(forms.TextInput):
 
     class Media:
         css = {
-            'all': ('./dwc-components/css/dwc.min.826ea35c.css',),
+            'all': ('./dwc-components/css/dwc.min.530449c3.css',),
         }
-        js = ('./dwc-components/js/dwc.chunks.min.826ea35c.js','./dwc-components/js/icon_picker.826ea35c.js',)
+        js = ('./dwc-components/js/dwc.chunks.min.530449c3.js','./dwc-components/js/icon_picker.530449c3.js',)
         
