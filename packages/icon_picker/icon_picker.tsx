@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
     // scoped: true
     // shadow: true,
 })
-export class MyComponent {
+export class IconPicker {
     @State() isShow = false
     @State() icons: string[] = []
     @State() chooseIcon = ""

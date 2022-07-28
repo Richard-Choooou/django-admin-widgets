@@ -17,7 +17,7 @@ class WebpackTemplatePlugin {
         compiler.hooks.emit.tapAsync(pluginName, (compilation, callback) => {
             console.log('========================== emit ===============================');
             // console.log(compilation.entrypoints)
-            const assets = htmlWebpackPluginAssets(compilation, ["icon_picker"], '/')
+            const assets = htmlWebpackPluginAssets(compilation, this.userOptions.chunks, '/')
             fs.readFile(this.userOptions.template, 'utf-8',(err, templateStr) => {
                 if (err) throw err
                 console.log(templateStr)

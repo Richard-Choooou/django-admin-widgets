@@ -1,0 +1,44 @@
+{% extends "preview/base.html" %}
+{% block content %}
+    <div class="markdown-body">
+        <h1 id="richtext">richtext</h1>
+<blockquote>
+<p>富文本组件</p>
+</blockquote>
+<h2 id="使用示例">使用示例</h2>
+<p><rich-text name="description" value="hello world"></rich-text></p>
+<h3 id="在-html-中使用">在 html 中使用</h3>
+<pre><code class="language-html">&lt;rich-text name=&quot;description&quot; value=&quot;hello world&quot;&gt;&lt;/rich-text&gt;
+</code></pre>
+<h3 id="在-python-中使用">在 python 中使用</h3>
+<pre><code class="language-python">from dwc.widgets import Richtext
+
+class AdminMenuForm(forms.ModelForm):
+    description = forms.CharField(label=&quot;描述&quot;, strip=True, widget=Richtext)
+</code></pre>
+<h2 id="options">options</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>string</td>
+<td>null</td>
+<td>form 表单元素 name 属性</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>null</td>
+<td>form 表单元素 value 属性</td>
+</tr>
+</tbody></table>
+
+    </div>
+{% endblock %}

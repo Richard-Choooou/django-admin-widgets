@@ -8,6 +8,11 @@ components = [
         "className": "IconPicker"
     },
     {
+        "name": "rich_text",
+        "cname": "富文本",
+        "className": "RichText"
+    },
+    {
         "name": "uploader",
         "cname": "文件上传",
         "className": "Uploader"
@@ -25,6 +30,13 @@ def icon_picker_view(request):
     return render(request, 'preview/icon_picker/doc.html', {
         "components": components,
         "component": 'icon_picker'
+    })
+
+
+def rich_text_view(request):
+    return render(request, 'preview/rich_text/doc.html', {
+        "components": components,
+        "component": 'rich_text'
     })
 
 

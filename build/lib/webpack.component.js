@@ -2,7 +2,6 @@ const { merge } = require('webpack-merge')
 const webpack = require('webpack')
 const commonConfig = require('./webpack.common')
 const path = require("path")
-const globby = require('globby')
 const { rootPath } = require('../define')
 const { getComponents } = require('../utils')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -19,6 +18,7 @@ function genEntry() {
 
 function genTemplatePlugins() {
     const components = getComponents()
+    console.log(components)
     return components.map((val) => {
         return new WebpackTemplatePlugin({
             template: path.resolve(rootPath, `./packages/${val}/${val}.py`),
