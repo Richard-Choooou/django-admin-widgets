@@ -18,7 +18,7 @@ module.exports = function gulpMarked(options) {
 		}
 
 		try {
-			file.contents = Buffer.from(`{% extends "preview/base.html" %}
+			file.contents = Buffer.from(`{% extends "doc/base.html" %}
 {% block content %}
     <div class="markdown-body">
         ${marked.parse(file.contents.toString())}

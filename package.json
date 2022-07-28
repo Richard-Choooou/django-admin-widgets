@@ -7,12 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:lib && npm run build:temp && npm run build:comp && npm run gulp:build",
     "dev:lib": "webpack serve --config ./build/lib/webpack.dev.js & npm run gulp:dev",
-    "dev:temp": "webpack serve --config ./build/template/webpack.dev.js",
+    "dev:doc": "webpack serve --config ./build/doc/webpack.dev.js",
     "gulp:dev": "gulp -f ./build/gulpfile.js dev",
     "gulp:build": "gulp -f ./build/gulpfile.js build",
     "build:lib": "webpack build --config ./build/lib/webpack.pro.js",
     "build:comp": "webpack build --config ./build/lib/webpack.component.js",
-    "build:temp": "webpack build --config ./build/template/webpack.build.js"
+    "build:doc": "webpack build --config ./build/doc/webpack.build.js"
   },
   "keywords": [],
   "author": "",

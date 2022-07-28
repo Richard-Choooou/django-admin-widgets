@@ -3,10 +3,10 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 const { rootPath } = require('../define.js')
 console.log(rootPath)
 module.exports = {
-    entry: path.resolve(rootPath, './_template/index.ts'),
+    entry: path.resolve(rootPath, './src/doc/index.ts'),
     output: {
-        path: path.resolve(rootPath, './static/preview'),
-        filename: 'js/template.js',
+        path: path.resolve(rootPath, './dwc/static/doc'),
+        filename: 'js/index.js',
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx'],
@@ -24,9 +24,9 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            publicPath: "/static/preview/",
-            filename: path.resolve(rootPath, "./templates/preview/base.html"),
-            template: path.resolve(rootPath, "./_template/base.html")
+            publicPath: "/static/doc/",
+            filename: path.resolve(rootPath, "./dwc/templates/doc/base.html"),
+            template: path.resolve(rootPath, "./src/doc/base.html")
         })
     ]
 }

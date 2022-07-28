@@ -5,14 +5,14 @@ components = {{{componentsListStr}}}
 
 
 def index_view(request):
-    return render(request, 'preview/base.html', {
+    return render(request, 'doc/base.html', {
         "components": components
     })
 
 {{#each components}}
 
 def {{name}}_view(request):
-    return render(request, 'preview/{{name}}/doc.html', {
+    return render(request, 'doc/{{name}}/doc.html', {
         "components": components,
         "component": '{{name}}'
     })

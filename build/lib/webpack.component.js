@@ -11,7 +11,7 @@ const WebpackTemplatePlugin = require("./plugins/template-plugin")
 function genEntry() {
     const components = getComponents()
     const paths = components.reduce((prev, val) => {
-        prev[val] = path.resolve(rootPath, `./packages/${val}/${val}.tsx`)
+        prev[val] = path.resolve(rootPath, `./src/packages/${val}/${val}.tsx`)
         return prev
     }, {})
     return paths
@@ -21,7 +21,7 @@ function genTemplatePlugins() {
     const components = getComponents()
     return components.map((val) => {
         return new WebpackTemplatePlugin({
-            template: path.resolve(rootPath, `./packages/${val}/${val}.py`),
+            template: path.resolve(rootPath, `./src/packages/${val}/${val}.py`),
             filename: `../../widgets/${val}.py`,
             publicPath: "./dwc-components",
             chunks: [`${val}`]
@@ -33,7 +33,7 @@ module.exports = merge(commonConfig, {
     mode: "production",
     entry: genEntry(),
     output: {
-        path: path.join(rootPath, "/static/dwc-components"),
+        path: path.join(rootPath, "/dwc/static/dwc-components"),
         filename: 'js/[name].[hash:8].js',
         module: false,
         // libraryTarget: 'umd',

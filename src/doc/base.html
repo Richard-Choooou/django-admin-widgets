@@ -8,7 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'dwc/css/dwc.min.css' %}">
     <script src="{% static 'dwc/js/dwc.min.js' %}"></script>
-<script defer src="/static/preview/js/template.js"></script></head>
+</head>
 <body>
     <div class="main">
         <div class="nav">
@@ -16,7 +16,9 @@
             <h2>组件</h2>
             <ul>
                 {% for comp in components %}
-                    <li {% if comp.name == component %}class="active"{% endif %}><a href="/dwc/{{comp.name}}">{{ comp.className }} {{comp.cname}}</a></li>
+                    <li class="{% if comp.name == component %}active{% endif %}">
+                        <a href="/dwc/{{comp.name}}">{{ comp.className }} {{comp.cname}}</a>
+                    </li>
                 {% endfor %}
             </ul>
             {% endblock %}

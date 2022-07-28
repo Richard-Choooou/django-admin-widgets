@@ -12,9 +12,9 @@ const { rootPath } = require('./define.js')
  * @returns 
  */
 function markdown() {
-    return gulp.src('../packages/**/*.md')
+    return gulp.src('../src/packages/**/*.md')
     .pipe(markdownToHtml())
-    .pipe(gulp.dest('../templates/preview/'));
+    .pipe(gulp.dest('../dwc/templates/doc/'));
 }
 
 /**
@@ -22,9 +22,9 @@ function markdown() {
  */
 function genPythonFile() {
 	const components = []
-	const componentsDir = fs.readdirSync(path.resolve(path.resolve(), "../packages"))
+	const componentsDir = fs.readdirSync(path.resolve(path.resolve(), "../src/packages"))
 	componentsDir.forEach(dir => {
-		const meta = fs.readFileSync(path.resolve(path.resolve(), "../packages/", dir, "meta.json"))
+		const meta = fs.readFileSync(path.resolve(path.resolve(), "../src/packages/", dir, "meta.json"))
 		components.push(JSON.parse(meta.toString()))
 	})
 	console.log(components)
@@ -33,7 +33,7 @@ function genPythonFile() {
 		componentsListStr: JSON.stringify(components, null, "    "),
 		components: components
 	})
-	fs.writeFileSync(path.resolve(path.resolve(), "../views.py"), viewfile)
+	fs.writeFileSync(path.resolve(path.resolve(), "../dwc/views.py"), viewfile)
 
 	const urlTemp = Handlebars.compile(urls)
 
@@ -42,7 +42,7 @@ function genPythonFile() {
 		components: components
 	})
 
-	fs.writeFileSync(path.resolve(path.resolve(), "../urls.py"), urlfile)
+	fs.writeFileSync(path.resolve(path.resolve(), "../dwc/urls.py"), urlfile)
 
     const widgetInitTemp = Handlebars.compile(widgetPackage)
 
@@ -50,11 +50,11 @@ function genPythonFile() {
 		components: components
 	})
 
-    if (!fs.existsSync(path.resolve(rootPath, "./widgets"))) {
-        fs.mkdirSync(path.resolve(rootPath, "./widgets"))
+    if (!fs.existsSync(path.resolve(rootPath, "./dwc/widgets"))) {
+        fs.mkdirSync(path.resolve(rootPath, "./dwc/widgets"))
     }
 
-	fs.writeFileSync(path.resolve(path.resolve(), "../widgets/__init__.py"), initfile)
+	fs.writeFileSync(path.resolve(path.resolve(), "../dwc/widgets/__init__.py"), initfile)
 }
 
 /**
@@ -62,11 +62,11 @@ function genPythonFile() {
  * @returns 
  */
 function htmlWidgetTemplate() {
-    return gulp.src('../packages/**/*.html')
+    return gulp.src('../src/packages/**/*.html')
     .pipe(rename(file => {
         file.dirname = path.dirname(file.dirname);
     }))
-    .pipe(gulp.dest('../templates/dwc/'));
+    .pipe(gulp.dest('../dwc/templates/dwc/'));
 }
 
 /**
@@ -90,8 +90,8 @@ function build(cb) {
 }
 
 function watch() {
-    gulp.watch('../packages/**/*.md', markdown);
-    gulp.watch('../packages/**/*.html', htmlWidgetTemplate);
+    gulp.watch('../src/packages/**/*.md', markdown);
+    gulp.watch('../src/packages/**/*.html', htmlWidgetTemplate);
 }
 
 module.exports.dev = gulp.parallel(build, watch)
