@@ -1,0 +1,44 @@
+{% extends "doc/base.html" %}
+{% block content %}
+    <div class="markdown-body">
+        <h1 id="icon_pick">icon_pick</h1>
+<blockquote>
+<p>用于选择 ICON</p>
+</blockquote>
+<p><icon-picker name="icon" value="bi bi-123"></icon-picker></p>
+<h2 id="使用示例">使用示例</h2>
+<h3 id="在-html-中使用">在 html 中使用</h3>
+<pre><code class="language-html">&lt;icon-picker name=&quot;icon&quot; value=&quot;bi bi-123&quot;&gt;&lt;/icon-picker&gt;
+</code></pre>
+<h3 id="在-python-中使用">在 python 中使用</h3>
+<pre><code class="language-python">from dwc.widgets import IconPicker
+
+class AdminMenuForm(forms.ModelForm):
+    icon = forms.CharField(label=&quot;图标&quot;, strip=True, widget=IconPicker)
+</code></pre>
+<h2 id="options">options</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>string</td>
+<td>null</td>
+<td>form 表单元素 name 属性</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>null</td>
+<td>form 表单元素 value 属性</td>
+</tr>
+</tbody></table>
+
+    </div>
+{% endblock %}

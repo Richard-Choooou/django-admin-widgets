@@ -7,14 +7,16 @@ const path = require('path')
 const rename = require("gulp-rename")
 const { rootPath } = require('./define.js')
 
+let basePath = ""
+
 /**
  * 处理markdown文件
  * @returns 
  */
 function markdown() {
-    return gulp.src('../packages/**/*.md')
+    return gulp.src('../src/packages/**/*.md')
     .pipe(markdownToHtml())
-    .pipe(gulp.dest('../templates/preview/'));
+    .pipe(gulp.dest(`../${basePath}/templates/doc/`));
 }
 
 /**
@@ -22,9 +24,9 @@ function markdown() {
  */
 function genPythonFile() {
 	const components = []
-	const componentsDir = fs.readdirSync(path.resolve(path.resolve(), "../packages"))
+	const componentsDir = fs.readdirSync(path.resolve(path.resolve(), "../src/packages"))
 	componentsDir.forEach(dir => {
-		const meta = fs.readFileSync(path.resolve(path.resolve(), "../packages/", dir, "meta.json"))
+		const meta = fs.readFileSync(path.resolve(path.resolve(), "../src/packages/", dir, "meta.json"))
 		components.push(JSON.parse(meta.toString()))
 	})
 	console.log(components)
@@ -33,7 +35,7 @@ function genPythonFile() {
 		componentsListStr: JSON.stringify(components, null, "    "),
 		components: components
 	})
-	fs.writeFileSync(path.resolve(path.resolve(), "../views.py"), viewfile)
+	fs.writeFileSync(path.resolve(path.resolve(), `../${basePath}/views.py`), viewfile)
 
 	const urlTemp = Handlebars.compile(urls)
 
@@ -42,7 +44,7 @@ function genPythonFile() {
 		components: components
 	})
 
-	fs.writeFileSync(path.resolve(path.resolve(), "../urls.py"), urlfile)
+	fs.writeFileSync(path.resolve(path.resolve(), `../${basePath}/urls.py`), urlfile)
 
     const widgetInitTemp = Handlebars.compile(widgetPackage)
 
@@ -50,11 +52,11 @@ function genPythonFile() {
 		components: components
 	})
 
-    if (!fs.existsSync(path.resolve(rootPath, "./widgets"))) {
-        fs.mkdirSync(path.resolve(rootPath, "./widgets"))
+    if (!fs.existsSync(path.resolve(rootPath, `./${basePath}/widgets`))) {
+        fs.mkdirSync(path.resolve(rootPath, `./${basePath}/widgets`))
     }
 
-	fs.writeFileSync(path.resolve(path.resolve(), "../widgets/__init__.py"), initfile)
+	fs.writeFileSync(path.resolve(path.resolve(), `../${basePath}/widgets/__init__.py`), initfile)
 }
 
 /**
@@ -62,11 +64,11 @@ function genPythonFile() {
  * @returns 
  */
 function htmlWidgetTemplate() {
-    return gulp.src('../packages/**/*.html')
+    return gulp.src('../src/packages/**/*.html')
     .pipe(rename(file => {
         file.dirname = path.dirname(file.dirname);
     }))
-    .pipe(gulp.dest('../templates/dwc/'));
+    .pipe(gulp.dest(`../${basePath}/templates/dwc/`));
 }
 
 /**
@@ -82,6 +84,10 @@ function htmlWidgetTemplate() {
 // }
 
 function build(cb) {
+    basePath = "dwc"
+    if (!fs.existsSync(path.resolve(rootPath, `./${basePath}`))) {
+        fs.mkdirSync(path.resolve(rootPath, `./${basePath}`))
+    }
     markdown()
     htmlWidgetTemplate()
     genPythonFile()
@@ -89,12 +95,23 @@ function build(cb) {
     // gulp.watch('../packages/**/*.py', processPyFile);
 }
 
-function watch() {
-    gulp.watch('../packages/**/*.md', markdown);
-    gulp.watch('../packages/**/*.html', htmlWidgetTemplate);
+function dev(cb) {
+    basePath = "dwc-dev"
+    if (!fs.existsSync(path.resolve(rootPath, `./${basePath}`))) {
+        fs.mkdirSync(path.resolve(rootPath, `./${basePath}`))
+    }
+    markdown()
+    htmlWidgetTemplate()
+    genPythonFile()
+    cb()
 }
 
-module.exports.dev = gulp.parallel(build, watch)
+function watch() {
+    gulp.watch('../src/packages/**/*.md', markdown);
+    gulp.watch('../src/packages/**/*.html', htmlWidgetTemplate);
+}
+
+module.exports.dev = gulp.parallel(dev, watch)
 
 module.exports.build = build
 

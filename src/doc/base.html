@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dwc/css/dwc.min.css' %}">
+    <script src="{% static 'dwc/js/dwc.min.js' %}"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+            {% block sidebar %}
+            <h2>组件</h2>
+            <ul>
+                {% for comp in components %}
+                    <li class="{% if comp.name == component %}active{% endif %}">
+                        <a href="/dwc/{{comp.name}}">{{ comp.className }} {{comp.cname}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endblock %}
+        </div>
+        <div class="content">
+            {% block content %}
+            content
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

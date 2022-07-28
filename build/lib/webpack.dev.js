@@ -8,7 +8,7 @@ module.exports = merge(commonConfig, {
     mode: 'development',
     entry: path.resolve(rootPath, './src/index.ts'),
     output: {
-        path: path.resolve(rootPath, './static/dwc'),
+        path: path.resolve(rootPath, './dwc-dev/static/dwc'),
         filename: 'js/dwc.min.js',
     },
     plugins: [
