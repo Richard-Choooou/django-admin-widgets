@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:lib && npm run build:temp && npm run build:comp && npm run gulp:build",
+    "build": "npm run build:lib && npm run build:doc && npm run build:comp && npm run gulp:build",
     "dev:lib": "webpack serve --config ./build/lib/webpack.dev.js & npm run gulp:dev",
     "dev:doc": "webpack serve --config ./build/doc/webpack.dev.js",
     "gulp:dev": "gulp -f ./build/gulpfile.js dev",

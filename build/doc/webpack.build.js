@@ -1,5 +1,7 @@
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common.js')
+const path = require("path")
+const { rootPath } = require('../define.js')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(commonConfig, {
